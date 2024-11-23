@@ -12,7 +12,7 @@ function checkPorts($host, $startPort, $endPort, $maxProcesses = 500): void {
     $activeProcesses = 0;
 
     for ($port = $startPort; $port <= $endPort; $port++) {
-		if ($port % 1000 === 0) echo "Выполняется проверка $port порта...\n";
+        if ($port % 1000 === 0) echo "Выполняется проверка $port порта...\n";
         $pid = pcntl_fork();
         if ($pid == -1) {
             die("Невозможно создать дочерний процесс!");
@@ -34,4 +34,4 @@ function checkPorts($host, $startPort, $endPort, $maxProcesses = 500): void {
     }
 }
 
-checkPorts("127.0.0.1", 1, 65535);
+checkPorts($argv[1], 1, 65535);
